@@ -1,0 +1,193 @@
+.navigationMenu-Cart {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    margin-bottom: 5vh;
+}
+
+.CartIcon {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 12px;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+.cartNumber {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 550;
+    font-size: 1.6rem;
+    color: #1976d2;
+    margin-right: 4px;
+}
+
+.CartIcon:hover {
+    cursor: pointer;
+    background: rgba(25, 118, 210, 0.08);
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.15);
+}
+
+.CartIcon:hover .cartNumber{
+    color: #1976d2;
+    transition: color 0.2s;
+}
+
+.CartIcon svg {
+    color: #1976d2;
+    transition: color 0.2s;
+}
+
+.CartIcon:hover svg {
+    color: #1565c0;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.profile-login {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.profile-login img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.activeProfileImage {
+    border: 2.5px solid #1565c0;
+}
+
+.login svg {
+    color: #1976d2;
+    transition: color 0.2s;
+}
+
+.login {
+    color: #1976d2;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 18px;
+    font-weight: 550;
+    padding: 8px 16px;
+    border-radius: 12px;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+.loginIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login:hover{
+    cursor: pointer;
+    background: rgba(25, 118, 210, 0.08);
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.15);
+}
+
+.login:hover .loginIcon svg,
+.login:hover .loginText{
+    color: #1565c0;
+}
+
+.cartActive,
+.loginActive {
+    background: #1976d2;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.25);
+}
+
+.loginActive .loginText,
+.loginActive .loginIcon svg,
+.cartActive svg,
+.cartActive .cartNumber {
+    color: white;
+}
+
+.sectionName {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #1976d2;
+}
+
+.hr {
+    width: 80%;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.dropDown {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    min-width: 160px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 16px rgba(25, 118, 210, 0.12);
+    border-radius: 10px;
+    border-top-right-radius: 0;
+    z-index: 100;
+    padding: 8px 0;
+    transition: opacity 0.3s cubic-bezier(.4,0,.2,1), transform 0.3s cubic-bezier(.4,0,.2,1);
+    transform: translateY(-10px) scale(0.98);
+}
+
+.profile-login:hover .dropDown,
+.profile-login:focus-within .dropDown,
+.dropDown:hover {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+}
+
+.dropDown ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.dropDown ul li {
+    padding: 12px 24px;
+    cursor: pointer;
+    color: #1976d2;
+    font-size: 16px;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+.dropDown ul li:hover {
+    background: #f0f4fa;
+    color: #1565c0;
+}
+
+
+@media(max-width: 750px) {
+    .left {
+        scale: 0.8;
+        gap: 2px;
+    }
+    .dropDown {
+        display: none;
+    }
+}

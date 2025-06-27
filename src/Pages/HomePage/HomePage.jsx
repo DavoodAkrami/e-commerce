@@ -7,6 +7,7 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { ProductContext } from "../../Context/ProductContext";
 import { useContext } from "react";
+import { MdArrowForwardIos, MdArrowBackIos  } from "react-icons/md";
 
 
 const HomePage = () => {
@@ -35,6 +36,7 @@ const HomePage = () => {
 
     return (
         <div className="root">
+            
             <div className="productsContainer">
                 {loading ? (
                     Array.from({ length: 9 }).map((_, idx) => (
@@ -67,11 +69,11 @@ const HomePage = () => {
                 )}
             </div>
             <div className="pageNumbers">
-                <button className="reduceActivePageNumber" onClick={() => activePageNumber > 1 ? setActivePageNumber(activePageNumber - 1) : setActivePageNumber(activePageNumber)}>-</button>
+                <button className="reduceActivePageNumber" onClick={() => activePageNumber > 1 ? setActivePageNumber(activePageNumber - 1) : setActivePageNumber(activePageNumber)}><MdArrowBackIos /></button>
                 {new Array(pageCounts).fill(0).map((page, index) => (
                     <button key={index} className={activePageNumber === index + 1 ? "activePageNumberButton" : "pageNumberButton"} onClick={() => setActivePageNumber(index + 1)}>{index + 1}</button>
                 ))}
-                <button className="increasActivePageNumber" onClick={() => activePageNumber < pageCounts ? setActivePageNumber(activePageNumber + 1) : setActivePageNumber(activePageNumber)}>+</button>
+                <button className="increasActivePageNumber" onClick={() => activePageNumber < pageCounts ? setActivePageNumber(activePageNumber + 1) : setActivePageNumber(activePageNumber)}><MdArrowForwardIos /></button>
             </div>
         </div>
     )
