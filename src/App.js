@@ -4,6 +4,8 @@ import HomePage from './Pages/HomePage/HomePage';
 import links from "./routes/links.tsx";
 import Layout from './Layout/Layout/Layout.jsx';
 import AuthPage from "./Pages/AuthPage/AuthPage.jsx"
+import ClientProfilePage from './Pages/Profile/Client/ClientProfilePage.jsx';
+import CartPage from './Pages/CartPage/CartPage.jsx';
 
 
 export const clientPages = [
@@ -12,7 +14,7 @@ export const clientPages = [
     path: links.client.home
   },
   {
-    element: "",
+    element: <CartPage />,
     path: links.client.cart
   },
   {
@@ -20,7 +22,7 @@ export const clientPages = [
     path: links.client.auth
   },
   {
-    element: "",
+    element: <ClientProfilePage />,
     path: links.client.profile
   },
   {

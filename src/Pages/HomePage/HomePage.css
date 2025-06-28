@@ -1,5 +1,6 @@
 .root {
     padding: 2em;
+    user-select: none;
 }
 
 .productsContainer {
@@ -9,65 +10,6 @@
     padding: 2em;
     background: #fafbfc;
     border-radius: 18px;
-}
-
-.productCard {
-    border: none;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08), 0 1.5px 4px rgba(0,0,0,0.06);
-    padding: 1.5em 1em 1em 1em;
-    border-radius: 20px;
-    height: 340px;
-    min-width: 120px;
-    overflow: hidden;
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: box-shadow 0.2s, transform 0.2s;
-}
-
-.productCard:hover {
-    box-shadow: 0 6px 24px rgba(0,0,0,0.16), 0 3px 8px rgba(0,0,0,0.12);
-    color: #222;
-    cursor: pointer;
-    transform: translateY(-4px) scale(1.03);
-}
-
-.productCard img {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    height: auto;
-    max-width: 180px;
-    max-height: 180px;
-    object-fit: cover;
-    border-radius: 16px;
-    margin-bottom: 1em;
-    box-shadow: 0 1px 8px rgba(0,0,0,0.10);
-    background: #f3f3f3;
-    display: block;
-    transition: box-shadow 0.2s, filter 0.2s;
-}
-
-.productCard img:hover {
-    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
-    filter: brightness(0.97) contrast(1.05);
-}
-
-.productCard .title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin: 0.5em 0 0.2em 0;
-    text-align: center;
-    color: #222;
-    letter-spacing: 0.01em;
-}
-
-.productCard .price {
-    font-size: 1rem;
-    font-weight: 500;
-    color: #4caf50;
-    margin-top: 0.2em;
-    text-align: center;
 }
 
 .pageNumbers {
@@ -148,13 +90,6 @@
         font-size: smaller;
         gap: 18px;
     }
-    .productCard {
-        height: 300px;
-    }
-    .productCard img {
-        max-width: 140px;
-        max-height: 140px;
-    }
     .pageNumbers {
         gap: 6px;
         margin-top: 1.2em;
@@ -175,14 +110,6 @@
         grid-template-columns: 1fr;
         gap: 12px;
         padding: 1em;
-    }
-    .productCard {
-        height: 220px;
-        padding: 1em 0.5em 0.5em 0.5em;
-    }
-    .productCard img {
-        max-width: 90px;
-        max-height: 90px;
     }
     .pageNumbers {
         gap: 4px;

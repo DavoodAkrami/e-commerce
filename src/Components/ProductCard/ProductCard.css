@@ -1,0 +1,188 @@
+.productCard {
+    border: none;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08), 0 1.5px 4px rgba(0,0,0,0.06);
+    padding: 1.5em 1em 1em 1em;
+    border-radius: 20px;
+    height: 340px;
+    min-width: 120px;
+    overflow: hidden;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.productCard:hover {
+    box-shadow: 0 6px 24px rgba(0,0,0,0.16), 0 3px 8px rgba(0,0,0,0.12);
+    color: #222;
+    cursor: pointer;
+    transform: translateY(-4px) scale(1.03);
+}
+
+.productCard img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    height: auto;
+    max-width: 180px;
+    max-height: 180px;
+    object-fit: cover;
+    border-radius: 16px;
+    margin-bottom: 1em;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.10);
+    background: #f3f3f3;
+    display: block;
+    transition: box-shadow 0.2s, filter 0.2s;
+}
+
+.productCard img:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    filter: brightness(0.97) contrast(1.05);
+}
+
+.productCard .title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0.5em 0 0.2em 0;
+    text-align: center;
+    color: #222;
+    letter-spacing: 0.01em;
+}
+
+.productCard .price {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #4caf50;
+    margin-top: 0.2em;
+    text-align: center;
+}
+
+.addToCart {
+    width: 80%;
+    height: 10%;
+}
+
+.AddToCartButton {
+    margin-top: 2em;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    border: none;
+    font-size: 14px;
+    font-weight: 550;
+    background: #1976d2;
+    color: white;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.AddToCartButton:hover {
+    cursor: pointer;
+    color: #1565c0;
+    background: white;
+    box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+}
+
+.AddToCartButton:disabled {
+    background: #ccc;
+    color: #666;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.AddToCartButton:disabled:hover {
+    background: #ccc;
+    color: #666;
+    transform: none;
+    box-shadow: none;
+}
+
+.productQuantity {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 1.5em;
+    padding: 8px 12px;
+    background: #f8f9fa;
+    border-radius: 20px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.productQuantity:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-color: #1976d2;
+}
+
+.quantity-btn {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    color: #1976d2;
+    transition: color 0.2s, transform 0.2s;
+    flex-shrink: 0;
+}
+
+.quantity-btn:hover {
+    color: #1565c0;
+    transform: scale(1.1);
+}
+
+.quantity-btn.minus {
+    color: #f44336;
+}
+
+.quantity-btn.minus:hover {
+    color: #d32f2f;
+}
+
+.quantity-input {
+    width: 50px;
+    text-align: center;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1976d2;
+    outline: none;
+    padding: 4px 8px;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.quantity-input:focus {
+    background: rgba(25, 118, 210, 0.1);
+}
+
+.quantity-input::-webkit-inner-spin-button,
+.quantity-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.quantity-input[type=number] {
+    -moz-appearance: textfield;
+}
+
+@media (max-width: 800px) {
+    .productCard {
+        height: 300px;
+    }
+    .productCard img {
+        max-width: 140px;
+        max-height: 140px;
+    }
+}
+
+@media (max-width: 550px) {
+    .productCard {
+        height: 220px;
+        padding: 1em 0.5em 0.5em 0.5em;
+    }
+    .productCard img {
+        max-width: 90px;
+        max-height: 90px;
+    }
+}

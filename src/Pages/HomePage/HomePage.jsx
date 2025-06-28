@@ -8,12 +8,18 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import { ProductContext } from "../../Context/ProductContext";
 import { useContext } from "react";
 import { MdArrowForwardIos, MdArrowBackIos  } from "react-icons/md";
+import { CartContext } from "../../Context/CartContext.jsx";
+import ProductCard from "../../Components/ProductCard/ProductCard";
+
 
 
 const HomePage = () => {
-    const { products, loading } = useContext(ProductContext);
+    const { addItem, removeItem, getProductQuantity, updateQuantity } = useContext(CartContext);
+    const { products, loading: productsLoading } = useContext(ProductContext);
     const [pageCounts, setPageCounts] = useState(0);
     const [activePageNumber, setActivePageNumber] = useState(1);
+    const [loadingProducts, setLoadingProducts] = useState(new Set());
+    
 
 
     const calculateProductLength = () => {
@@ -35,10 +41,9 @@ const HomePage = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="root">
-            
+        <div className="root">  
             <div className="productsContainer">
-                {loading ? (
+                {productsLoading ? (
                     Array.from({ length: 9 }).map((_, idx) => (
                         <div key={idx} className="productCard">
                             <Skeleton 
@@ -56,15 +61,16 @@ const HomePage = () => {
                     ))
                 ) : (
                     products.slice(9 * (activePageNumber - 1), 9 * activePageNumber).map((product) => (
-                        <div key={product.id} className="productCard" onClick={() => navigate(links.client.product.replace(':id', product.id))}>
-                            <img src={product.thumbnail} alt={product.title} />
-                            <h3 className="title">
-                                {product.title}
-                            </h3>
-                            <div className="price">
-                                price: {product.price}$
-                            </div>
-                        </div>
+                        <ProductCard
+                            key={product.id}
+                            product={product}
+                            addItem={addItem}
+                            removeItem={removeItem}
+                            getProductQuantity={getProductQuantity}
+                            updateQuantity={updateQuantity}
+                            loadingProducts={loadingProducts}
+                            setLoadingProducts={setLoadingProducts}
+                        />
                     ))
                 )}
             </div>
