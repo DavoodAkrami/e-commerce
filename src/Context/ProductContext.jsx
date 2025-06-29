@@ -7,6 +7,9 @@ const initialState = {
     products: [],
     loading: false,
     error: null,
+    selectedProduct: null, 
+    productLoading: false,
+    productError: null,
     filters: {
         search: '',
         category: '',
@@ -30,6 +33,14 @@ const ProductReducer = (state, action) => {
             return { ...state, filters: { ...state.filters, ...action.payload } }
         case "CLEAR_FILTERS":
             return { ...state, filters: initialState.filters }
+        case "FETCH_PRODUCT_START":
+            return { ...state, productLoading: true }
+        case "FETCH_PRODUCT_SUCCESS":
+            return { ...state, productLoading: false, selectedProduct: action.payload, productError: null }
+        case "FETCH_PRODUCT_ERROR": 
+            return { ...state, productError: action.payload, loading: false }
+        case "CLEAR_SELECTED_PRODUCT":
+            return { ...state, selectedProduct: null, productError: null }
         default:
             return state;
     };
@@ -87,17 +98,42 @@ export const ProductProvider = ({children}) => {
         fetchProducts(initialState.filters);
     };
 
+    const fetchProductById = async (id) => {
+        dispatch({ type: "FETCH_PRODUCT_START" });
+        try {
+            const res = await fetch(`https://dummyjson.com/products/${id}`);
+            const data = await res.json();
+            
+            if (res.ok) {
+                dispatch({ type: "FETCH_PRODUCT_SUCCESS", payload: data });
+            } else {
+                dispatch({ type: "FETCH_PRODUCT_ERROR", payload: "failed" });
+            }
+        } catch(error) {
+            dispatch({ type: "FETCH_PRODUCT_ERROR", payload: error.message });
+        }
+    }
+
+    const clearSelectedProduct = () => {
+        dispatch({ type: "CLEAR_SELECTED_PRODUCT" });
+    };
+
     return (
         <ProductContext.Provider value={{       
             products: state.products,
             loading: state.loading,
+            productError: state.productError,
+            productLoading: state.productLoading,
             error: state.error,
             filters: state.filters,
-            totalProducts: state.totalProducts,
+            selectedProduct: state.selectedProduct,
             applyFilters,
             clearFilters,
-            fetchProducts
-            }}>
+            fetchProducts,
+            fetchProductById,
+            clearSelectedProduct
+            }}
+        >
             {children}
         </ProductContext.Provider>
     )

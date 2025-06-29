@@ -6,6 +6,7 @@ import Layout from './Layout/Layout/Layout.jsx';
 import AuthPage from "./Pages/AuthPage/AuthPage.jsx"
 import ClientProfilePage from './Pages/Profile/Client/ClientProfilePage.jsx';
 import CartPage from './Pages/CartPage/CartPage.jsx';
+import ProductDetailPage from './Components/ProductDetailedPage/ProductDetailePage.jsx';
 
 
 export const clientPages = [
@@ -26,7 +27,7 @@ export const clientPages = [
     path: links.client.profile
   },
   {
-    element: "productDetailedPage",
+    element: <ProductDetailPage />,
     path: links.client.product
   }
 ]

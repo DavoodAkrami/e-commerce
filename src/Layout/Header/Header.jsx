@@ -1,13 +1,14 @@
 import "./Header.css";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import  { AuthContext } from "../../Context/AuthContext";
 import { MdShoppingCart, MdLogin } from "react-icons/md";
 import NavBar from "../../Components/NavBar/NavBar";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import links from "../../routes/links.tsx"
 import clsx from "clsx";
 import { CartContext } from "../../Context/CartContext.jsx";
 import { CgProfile } from "react-icons/cg";
+import { GoArrowLeft } from "react-icons/go";
 
 
 
@@ -16,6 +17,11 @@ const Header = () => {
     const { user, logout } = useContext(AuthContext);
     const { totalQuantity } = useContext(CartContext);
     const navigate = useNavigate();
+    const { params } = useParams();
+    
+    const handleGoBack = () => {
+        navigate(-1);
+    };
 
     const Pages = [
             {
@@ -23,6 +29,19 @@ const Header = () => {
                 path: links.client.home
             },
         ]
+        const noHeaderPages = [
+            "/auth"
+        ]
+
+        if (noHeaderPages.includes(location.pathname)) {
+            return (
+                <div className="root">
+                    <div className="back" onClick={handleGoBack}>
+                        <GoArrowLeft className="Back" />
+                    </div>
+                </div>
+            )
+        }
 
     return (
         <div className="root">

@@ -1,11 +1,31 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./ProductCard.css";
 import { CiCirclePlus, CiCircleMinus } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import links from "../../routes/links.tsx";
+import { AuthContext } from "../../Context/AuthContext.jsx"
+
 
 const ProductCard = ({ product, addItem, removeItem, getProductQuantity, updateQuantity, loadingProducts, setLoadingProducts }) => {
     const navigate = useNavigate();
+    const { user } = useContext(AuthContext);
+
+    const handleAddToCart = (e) => {
+        e.stopPropagation();
+        if (user) {
+            setLoadingProducts(prev => new Set(prev).add(product.id));
+            addItem(product.id, 1).finally(() => {
+                setLoadingProducts(prev => {
+                    const newSet = new Set(prev);
+                    newSet.delete(product.id);
+                    return newSet;
+                });
+            });
+        } else {
+            navigate(links.client.auth);
+            return;
+        }
+    }
 
     return (
         <div className="productCard" onClick={() => navigate(links.client.product.replace(':id', product.id))}>
@@ -20,17 +40,10 @@ const ProductCard = ({ product, addItem, removeItem, getProductQuantity, updateQ
                 {getProductQuantity(product.id) === 0 ? 
                     <button
                         className="AddToCartButton"
+                        title="Add to cart"
                         disabled={loadingProducts.has(product.id)}
                         onClick={(e) => {
-                            e.stopPropagation();
-                            setLoadingProducts(prev => new Set(prev).add(product.id));
-                            addItem(product.id, 1).finally(() => {
-                                setLoadingProducts(prev => {
-                                    const newSet = new Set(prev);
-                                    newSet.delete(product.id);
-                                    return newSet;
-                                });
-                            });
+                            handleAddToCart(e)
                         }}
                     >
                         {loadingProducts.has(product.id) ? "Adding..." : "Add to cart"}
