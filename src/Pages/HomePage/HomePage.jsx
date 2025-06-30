@@ -14,7 +14,7 @@ import ProductCard from "../../Components/ProductCard/ProductCard";
 
 
 const HomePage = () => {
-    const { addItem, removeItem, getProductQuantity, updateQuantity } = useContext(CartContext);
+    const { addItem, removeItem, getProductQuantity, updateQuantity, cartLoading } = useContext(CartContext);
     const { products, loading: productsLoading } = useContext(ProductContext);
     const [pageCounts, setPageCounts] = useState(0);
     const [activePageNumber, setActivePageNumber] = useState(1);
@@ -70,6 +70,7 @@ const HomePage = () => {
                             updateQuantity={updateQuantity}
                             loadingProducts={loadingProducts}
                             setLoadingProducts={setLoadingProducts}
+                            cartLoading={cartLoading}
                         />
                     ))
                 )}

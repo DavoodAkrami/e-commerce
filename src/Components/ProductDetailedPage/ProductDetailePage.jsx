@@ -5,11 +5,12 @@ import PriceBox from "../PriceBox/PriceBox";
 import { CartContext } from "../../Context/CartContext";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthContext.jsx";
+import SlideShow from "../SlideShow/SlideShow.jsx";
 
 
 const ProductDetailPage = () => {
     const { selectedProduct, productLoading, productError, fetchProductById } = useContext(ProductContext);
-    const { addItem, removeItem, updateQuantity } = useContext(CartContext);
+    const { addItem, removeItem, getProductQuantity, updateQuantity, cartLoading } = useContext(CartContext);
     const { user } = useContext(AuthContext);
     const { id } = useParams();
 
@@ -39,6 +40,10 @@ const ProductDetailPage = () => {
                 addItem={addItem}
                 removeItem={removeItem}
                 updateQuantity={updateQuantity}
+                getProductQuantity={getProductQuantity}
+            />
+            <SlideShow 
+                selectedProduct={selectedProduct}
             />
         </div>
     );

@@ -157,6 +157,7 @@ export const CartProvider = ({ children }) => {
                 });
 
                 dispatch({ type: 'CLEAR_ERROR' });
+                dispatch({ type: "SET_LOADING", payload: false})
             } else {
                 throw new Error('Failed to add item');
             }    
@@ -167,20 +168,50 @@ export const CartProvider = ({ children }) => {
         }        
     };
 
-    const removeItem = (id) => {
-        dispatch({ type: 'REMOVE_ITEM', payload: { id } });
-    };
-
-    const updateQuantity = (id, quantity) => {
-        if (quantity <= 0) {
-            removeItem(id);
-        } else {
-            dispatch({ type: 'UPDATE_QUANTITY', payload: { id, quantity } });
+    const removeItem = async (id) => {
+        dispatch({ type: "SET_LOADING", payload: true });
+        try {
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            dispatch({ type: 'REMOVE_ITEM', payload: { id } });
+            dispatch({ type: 'CLEAR_ERROR' });
+        } catch (error) {
+            dispatch({ type: 'SET_ERROR', payload: error.message });
+        } finally {
+            dispatch({ type: "SET_LOADING", payload: false });
         }
     };
 
-    const clearCart = () => {
-        dispatch({ type: 'CLEAR_CART' });
+    const updateQuantity = async (id, quantity) => {
+        dispatch({ type: "SET_LOADING", payload: true });
+        try {
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            if (quantity <= 0) {
+                dispatch({ type: 'REMOVE_ITEM', payload: { id } });
+            } else {
+                dispatch({ type: 'UPDATE_QUANTITY', payload: { id, quantity } });
+            }
+            dispatch({ type: 'CLEAR_ERROR' });
+        } catch (error) {
+            dispatch({ type: 'SET_ERROR', payload: error.message });
+        } finally {
+            dispatch({ type: "SET_LOADING", payload: false });
+        }
+    };
+
+    const clearCart = async () => {
+        dispatch({ type: "SET_LOADING", payload: true });
+        try {
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            dispatch({ type: 'CLEAR_CART' });
+            dispatch({ type: 'CLEAR_ERROR' });
+        } catch (error) {
+            dispatch({ type: 'SET_ERROR', payload: error.message });
+        } finally {
+            dispatch({ type: "SET_LOADING", payload: false });
+        }
     };
 
     const clearError = () => {
@@ -194,6 +225,7 @@ export const CartProvider = ({ children }) => {
 
     const value = {
         ...state,
+        cartLoading: state.loading,
         addItem,
         removeItem,
         updateQuantity,

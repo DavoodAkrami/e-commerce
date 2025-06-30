@@ -4,9 +4,11 @@ import { CiCirclePlus, CiCircleMinus } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import links from "../../routes/links.tsx";
 import { AuthContext } from "../../Context/AuthContext.jsx"
+import { FaTrashAlt } from "react-icons/fa";
+import { ThreeDots } from 'react-loader-spinner';
 
 
-const ProductCard = ({ product, addItem, removeItem, getProductQuantity, updateQuantity, loadingProducts, setLoadingProducts }) => {
+const ProductCard = ({ product, addItem, removeItem, getProductQuantity, updateQuantity, loadingProducts, setLoadingProducts, cartLoading }) => {
     const navigate = useNavigate();
     const { user } = useContext(AuthContext);
 
@@ -43,39 +45,59 @@ const ProductCard = ({ product, addItem, removeItem, getProductQuantity, updateQ
                         title="Add to cart"
                         disabled={loadingProducts.has(product.id)}
                         onClick={(e) => {
-                            handleAddToCart(e)
+                            handleAddToCart(e);
                         }}
                     >
                         {loadingProducts.has(product.id) ? "Adding..." : "Add to cart"}
                     </button> : (
                         <div className="productQuantity">
-                            <CiCircleMinus 
+                            {getProductQuantity(product.id) > 1 ?
+                                <CiCircleMinus 
                                 className="quantity-btn minus" 
                                 onClick={(e) => {
-                                    e.stopPropagation();
-                                    const currentQty = getProductQuantity(product.id);
-                                    if (currentQty > 1) {
-                                        updateQuantity(product.id, currentQty - 1);
-                                    } else {
-                                        removeItem(product.id);
-                                    }
-                                }} 
-                            />
-                            <input 
-                                type="number" 
-                                value={getProductQuantity(product.id)} 
-                                onClick={(e) => e.stopPropagation()}
-                                onChange={(e) => {
-                                    const newQty = parseInt(e.target.value) || 0;
-                                    if (newQty > 0) {
+                                        e.stopPropagation();
+                                        const currentQty = getProductQuantity(product.id);
+                                        if (currentQty > 1) {
+                                            updateQuantity(product.id, currentQty - 1);
+                                        } else {
+                                            removeItem(product.id);
+                                        }
+                                    }} 
+                                /> :
+                                <FaTrashAlt     
+                                    className="trashIcon" 
+                                    onClick={(e) => {
+                                            e.stopPropagation();
+                                            removeItem(product.id)
+                                        }} 
+                                />
+                            }
+                            { cartLoading ?
+                                <> 
+                                <ThreeDots
+                                visible={true}
+                                height="52"
+                                width="60"
+                                color="#1976d2"
+                                radius="10"
+                                ariaLabel="three-dots-loading"
+                                wrapperStyle={{}}
+                                wrapperClass=""
+                                />
+                                </> :
+                                <input 
+                                    type="number" 
+                                    value={getProductQuantity(product.id)} 
+                                    onClick={(e) => e.stopPropagation()}
+                                    onChange={(e) => {
+                                        const newQty = parseInt(e.target.value) || 0;
                                         updateQuantity(product.id, newQty);
-                                    } else if (newQty === 0) {
-                                        removeItem(product.id);
-                                    }
-                                }}
-                                min="1"
-                                className="quantity-input"
-                            />
+                                    }}
+                                    min="1"
+                                    className="quantity-input"
+                                />
+                            }
+
                             <CiCirclePlus 
                                 className="quantity-btn plus" 
                                 onClick={(e) => {

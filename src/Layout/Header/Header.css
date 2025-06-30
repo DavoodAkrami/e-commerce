@@ -240,9 +240,6 @@
     .dropDown {
         display: none;
     }
-    *:hover {
-        
-    }
     .sectionName {
         display: flex;
         justify-content: center;

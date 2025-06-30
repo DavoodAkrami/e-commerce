@@ -138,6 +138,17 @@
     color: #d32f2f;
 }
 
+.trashIcon {
+    width: 26px;
+    height: 26px;
+    color: red;
+}
+
+.trashIcon:hover {
+    cursor: pointer;
+    color: rgba(255, 0, 0, 0.719);
+}
+
 .quantity-input {
     width: 50px;
     text-align: center;
