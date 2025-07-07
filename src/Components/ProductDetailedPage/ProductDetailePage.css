@@ -1,3 +1,37 @@
 .productDetailPage {
     user-select: none;
+    display: grid;
+    grid-template-columns: 5% 1fr 1fr 1fr 5%;
+    margin-top: 1rem;
+    gap: 2rem;
 }
+
+.slideShow {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 100px;
+    grid-column: 2;
+}
+
+@media(max-width: 1200px) {
+    .productDetailPage {
+        grid-template-columns: 5% 1fr 5%;
+        grid-template-rows: auto auto auto;
+    }
+
+    .slideShow {
+        grid-row: 1;
+        grid-column: 2;
+    }
+
+    .productDetails {
+        grid-row: 2;
+        grid-column: 2;
+    }
+
+    .priceBox {
+        grid-row: 3;
+        grid-column: 2;
+    }
+}
+

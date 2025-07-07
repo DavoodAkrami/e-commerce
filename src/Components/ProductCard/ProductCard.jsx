@@ -83,6 +83,7 @@ const ProductCard = ({ product, addItem, removeItem, getProductQuantity, updateQ
                                 ariaLabel="three-dots-loading"
                                 wrapperStyle={{}}
                                 wrapperClass=""
+                                className="threeDot"
                                 />
                                 </> :
                                 <input 

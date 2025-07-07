@@ -1,3 +1,34 @@
+:root {
+  --primary-color100: #1976d2;
+  --primary-color80: #1565c0;
+  --primary-color10: rgba(25, 118, 210, 0.10);
+  --primary-color15: rgba(25, 118, 210, 0.15);
+  --primary-color18: rgba(25, 118, 210, 0.18);
+  --primary-color25: rgba(25, 118, 210, 0.25);
+  --primary-color30: rgba(25, 118, 210, 0.3);
+  --primary-color40: rgba(25, 118, 210, 0.4);
+  --primary-color08: rgba(25, 118, 210, 0.08);
+  --primary-color12: rgba(25, 118, 210, 0.12);
+  --primary-color18: rgba(25, 118, 210, 0.18);
+  --primary-color-white: #fff;
+  --primary-color-black: #222;
+  --primary-color-grey: #e0e0e0;
+  --primary-color-grey-light: #f3f3f3;
+  --primary-color-grey-lighter: #fafbfc;
+  --primary-color-grey-dark: #aaa;
+  --primary-color-grey-border: #eee;
+  --primary-color-grey-input: #e9ecef;
+  --primary-color-grey-bg: #f8f9fa;
+  --primary-color-success: #4caf50;
+  --primary-color-success-dark: #45a049;
+  --primary-color-warning: #ff9800;
+  --primary-color-warning-dark: #f57c00;
+  --primary-color-error: #ccc;
+  --primary-color-error-bg: #f5f5f5;
+  --primary-color-text: #333;
+  --primary-color-text-light: #666;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,6 +36,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 code {

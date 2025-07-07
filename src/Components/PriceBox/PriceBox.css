@@ -3,8 +3,8 @@
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     padding: 24px;
-    max-width: 400px;
-    margin: 20px auto;
+    max-width: 80%;
+    margin: 0 auto;
     border: 1px solid #e0e0e0;
 }
 
@@ -17,7 +17,7 @@
 .priceNumber {
     font-size: 2.5rem;
     font-weight: 700;
-    color: #1976d2;
+    color: var(--primary-color100);
     text-align: center;
     margin-bottom: 10px;
 }
@@ -42,51 +42,51 @@
     justify-content: center;
     cursor: pointer;
     transition: all 0.2s ease;
-    color: #1976d2;
-    background: white;
-    border: 2px solid #1976d2;
+    color: var(--primary-color100);
+    background: var(--primary-color-white);
+    border: 2px solid var(--primary-color100);
 }
 
 .quantity-btn:hover:not(.disabled) {
-    background: #1976d2;
-    color: white;
+    background: var(--primary-color100);
+    color: var(--primary-color-white);
     transform: scale(1.1);
 }
 
 .quantity-btn.disabled {
-    color: #ccc;
-    border-color: #ccc;
+    color: var(--primary-color-error);
+    border-color: var(--primary-color-error);
     cursor: not-allowed;
-    background: #f5f5f5;
+    background: var(--primary-color-error-bg);
 }
 
 .quantity-input {
     width: 60px;
     height: 40px;
     text-align: center;
-    border: 2px solid #e9ecef;
+    border: 2px solid var(--primary-color-grey-input);
     border-radius: 8px;
     font-size: 1.1rem;
     font-weight: 600;
-    color: #333;
-    background: white;
+    color: var(--primary-color-text);
+    background: var(--primary-color-white);
     transition: border-color 0.2s ease;
 }
 
 .quantity-input:focus {
     outline: none;
-    border-color: #1976d2;
-    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+    border-color: var(--primary-color100);
+    box-shadow: 0 0 0 3px var(--primary-color10);
 }
 
 .stock-info {
     text-align: center;
-    color: #666;
+    color: var(--primary-color-text-light);
     font-size: 0.9rem;
     padding: 8px;
-    background: #f8f9fa;
+    background: var(--primary-color-grey-bg);
     border-radius: 8px;
-    border: 1px solid #e9ecef;
+    border: 1px solid var(--primary-color-grey-input);
 }
 
 .AddToCart {
@@ -97,8 +97,8 @@
 .add-to-cart-btn {
     width: 100%;
     padding: 16px 24px;
-    background: #1976d2;
-    color: white;
+    background: var(--primary-color100);
+    color: var(--primary-color-white);
     border: none;
     border-radius: 12px;
     font-size: 1.1rem;
@@ -109,26 +109,26 @@
 }
 
 .add-to-cart-btn:hover:not(:disabled) {
-    background: #1565c0;
+    background: var(--primary-color80);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(25, 118, 210, 0.4);
 }
 
 .add-to-cart-btn:disabled {
-    background: #ccc;
+    background: var(--primary-color-error);
     cursor: not-allowed;
     transform: none;
     box-shadow: none;
 }
 
 .add-to-cart-btn.loading {
-    background: #1976d2;
+    background: var(--primary-color100);
     opacity: 0.8;
 }
 
 .success-message {
-    background: #4caf50;
-    color: white;
+    background: var(--primary-color-success);
+    color: var(--primary-color-white);
     padding: 12px 16px;
     border-radius: 8px;
     text-align: center;
@@ -183,29 +183,35 @@
     margin: 0 0 4px 0;
     font-size: 14px;
     font-weight: 600;
-    color: #333;
+    color: var(--primary-color-text);
 }
 
 .info-content p {
     margin: 0;
     font-size: 13px;
-    color: #666;
+    color: var(--primary-color-text-light);
     line-height: 1.4;
 }
 
 .warranty .info-icon {
-    background: linear-gradient(135deg, #4caf50, #45a049);
-    color: white;
+    background: linear-gradient(135deg, var(--primary-color-success), var(--primary-color-success-dark));
+    color: var(--primary-color-white);
 }
 
 .shipping .info-icon {
-    background: linear-gradient(135deg, #2196f3, #1976d2);
-    color: white;
+    background: linear-gradient(135deg, var(--primary-color100), var(--primary-color80));
+    color: var(--primary-color-white);
 }
 
 .availability .info-icon {
-    background: linear-gradient(135deg, #ff9800, #f57c00);
-    color: white;
+    background: linear-gradient(135deg, var(--primary-color-warning), var(--primary-color-warning-dark));
+    color: var(--primary-color-white);
+}
+
+@media (max-width: 700px) {
+    .PriceBox {
+        max-width: 90%;
+    }
 }
 
 @media (max-width: 480px) {
@@ -269,4 +275,14 @@
         width: 50px;
         height: 36px;
     }
+}
+
+.add-to-cart-btn svg {
+    margin-right: 8px;
+    vertical-align: middle;
+    font-size: 1.2em;
+}
+
+.add-to-cart-btn span {
+    vertical-align: middle;
 }

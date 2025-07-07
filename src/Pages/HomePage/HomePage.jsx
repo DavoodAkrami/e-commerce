@@ -49,13 +49,14 @@ const HomePage = () => {
                             <Skeleton 
                                 height={180}
                                 width={180}
+                                className="skeletonImg"
                                 style={{ borderRadius: '16px', marginBottom: '1em', boxShadow: '0 1px 8px rgba(0,0,0,0.10)', background: '#f3f3f3', display: 'block' }} 
                             />
                             <h3 className="title" style={{ margin: '0.5em 0 0.2em 0' }}>
-                                <Skeleton width={120} height={20} />
+                                <Skeleton width={120} height={20} className="skeletonTitle" />
                             </h3>
                             <div className="price" style={{ marginTop: '0.2em' }}>
-                                <Skeleton width={60} height={18} />
+                                <Skeleton width={60} height={18} className="skeletonText" />
                             </div>
                         </div>
                     ))

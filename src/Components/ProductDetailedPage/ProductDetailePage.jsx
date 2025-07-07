@@ -6,6 +6,7 @@ import { CartContext } from "../../Context/CartContext";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthContext.jsx";
 import SlideShow from "../SlideShow/SlideShow.jsx";
+import ProductDetailes from "../ProductDetails/ProductDetails.jsx";
 
 
 const ProductDetailPage = () => {
@@ -13,12 +14,21 @@ const ProductDetailPage = () => {
     const { addItem, removeItem, getProductQuantity, updateQuantity, cartLoading } = useContext(CartContext);
     const { user } = useContext(AuthContext);
     const { id } = useParams();
+    const [ productImgs , setProductImgs ] = useState([]);
 
     useEffect(() => {
         if (id) {
             fetchProductById(id);
         }
     }, [id]);
+
+    useEffect(() => {
+        if (selectedProduct && Array.isArray(selectedProduct.images)) {
+            setProductImgs(selectedProduct.images);
+        } else {
+            setProductImgs([]);
+        }
+    }, [selectedProduct]);
 
     if (productLoading) {
         return <div>Loading product...</div>;
@@ -34,17 +44,22 @@ const ProductDetailPage = () => {
 
     return (
         <div className="productDetailPage">
-            <PriceBox 
-                product={selectedProduct} 
-                user={user} 
-                addItem={addItem}
-                removeItem={removeItem}
-                updateQuantity={updateQuantity}
-                getProductQuantity={getProductQuantity}
-            />
-            <SlideShow 
-                selectedProduct={selectedProduct}
-            />
+            <div className="slideShow">
+                <SlideShow imgSrcs={productImgs}/> 
+            </div>
+            <div className="productDetails">
+                <ProductDetailes product={selectedProduct} />
+            </div>
+            <div className="priceBox">
+                <PriceBox 
+                    product={selectedProduct} 
+                    user={user} 
+                    addItem={addItem}
+                    removeItem={removeItem}
+                    updateQuantity={updateQuantity}
+                    getProductQuantity={getProductQuantity}
+                />
+            </div>
         </div>
     );
 }

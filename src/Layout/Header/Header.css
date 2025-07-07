@@ -270,3 +270,27 @@
         font-size: 20px;
     }
 }
+
+.header {
+    border: 2px solid var(--primary-color100);
+    background: var(--primary-color-white);
+    box-shadow: 0 2px 8px var(--primary-color15);
+}
+.logo {
+    color: var(--primary-color100);
+}
+.menu {
+    background: var(--primary-color-white);
+    box-shadow: 0 2px 8px var(--primary-color10);
+}
+.menu-item {
+    color: var(--primary-color100);
+}
+.menu-item.active {
+    background: var(--primary-color100);
+    color: var(--primary-color-white);
+}
+.menu-item:hover {
+    background: var(--primary-color100);
+    color: var(--primary-color-white);
+}

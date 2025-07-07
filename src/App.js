@@ -5,7 +5,6 @@ import links from "./routes/links.tsx";
 import Layout from './Layout/Layout/Layout.jsx';
 import AuthPage from "./Pages/AuthPage/AuthPage.jsx"
 import ClientProfilePage from './Pages/Profile/Client/ClientProfilePage.jsx';
-import CartPage from './Pages/CartPage/CartPage.jsx';
 import ProductDetailPage from './Components/ProductDetailedPage/ProductDetailePage.jsx';
 
 
@@ -13,10 +12,6 @@ export const clientPages = [
   {
     element: <HomePage />,
     path: links.client.home
-  },
-  {
-    element: <CartPage />,
-    path: links.client.cart
   },
   {
     element: <AuthPage />,

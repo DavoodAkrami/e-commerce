@@ -6,6 +6,8 @@ import { FaTrashAlt } from "react-icons/fa";
 import { ThreeDots } from 'react-loader-spinner';
 import links from "../../routes/links.tsx";
 import { CartContext } from "../../Context/CartContext.jsx";
+import { FaCartPlus } from "react-icons/fa";
+
 
 const PriceBox = ({ user, product }) => {
     const [quantity, setQuantity] = useState(1);
@@ -78,7 +80,7 @@ const PriceBox = ({ user, product }) => {
                             {cartLoading ? (
                                 <ThreeDots
                                     visible={true}
-                                    height="52"
+                                    height="44"
                                     width="60"
                                     color="#1976d2"
                                     radius="10"
@@ -112,7 +114,7 @@ const PriceBox = ({ user, product }) => {
                             onClick={handleAddToCart}
                             disabled={cartLoading}
                         >
-                            {cartLoading ? "Adding..." : "Add To Cart"}
+                            {cartLoading ? "Adding..." : (<><FaCartPlus style={{ marginRight: '8px', verticalAlign: 'middle' }} /><span>Add To Cart</span></>)}
                         </button>
                     )}
                 </div>

@@ -1,32 +1,42 @@
-import { Slide } from 'react-slideshow-image';
-import React from 'react';
-import "./SlideShow.css";
+import React, { useContext, useState } from "react";
+import "./SlideShow.css"
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 
 
 
-const SlideShow = ({selectedProduct}) => {
-    const productImages = selectedProduct.images || [selectedProduct.thumbnail];
+const SlideShow = ({imgSrcs = []}) => {
+    const [slide, setSlide] = useState(0);
+
+    const handleNext = () => {
+        setSlide(slide < imgSrcs.length - 1 ? slide + 1 : slide);
+    }
+
+    const handlePrev = () => {
+        setSlide(slide > 0 ? slide - 1 : slide);
+    }
 
     return (
-        <div className="slideShow">
-        <Slide>
-            {productImages.map((img, idx) => (
-                <div key={idx} className="each-slide-effect">
-                    <div
-                        style={{
-                            backgroundImage: `url(${img})`,
-                        }}
-                    >
-                        <span>
-                            {`Slide ${idx + 1}`}
-                        </span>
-                    </div>
-                </div>
-            ))}
-        </Slide>
-    </div>
+        <div className="carousel">
+            <FaArrowLeft onClick={handlePrev} className="arrow arrow-left" />
+            <div className="carousel-track" style={{ transform: `translateX(-${slide * 100}%)` }}>
+                {imgSrcs.map((img, index) => 
+                    <img key={index} src={img} alt="تصویر محصولات" className="slide" />
+                )}
+            </div>
+            <FaArrowRight onClick={handleNext} className="arrow arrow-right" />
+            <span className="indicators">
+                {imgSrcs.map((_, index) => (
+                    <button 
+                        key={index}
+                        className={slide === index ? "indicator" : "indicator indicator-inactive"}
+                        onClick={() => setSlide(index)}
+                    ></button>
+                ))}
+            </span>
+        </div>
     )
 }
+
 
 export default SlideShow;

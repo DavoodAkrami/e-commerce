@@ -3,8 +3,18 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: var(--primary-color-grey-light);
+    color: var(--primary-color-black);
 }
 
 .footer hr {
     width: 80%;
+}
+
+.footer a {
+    color: var(--primary-color100);
+}
+
+.footer a:hover {
+    color: var(--primary-color80);
 }
