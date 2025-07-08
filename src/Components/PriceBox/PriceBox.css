@@ -300,7 +300,6 @@
         margin-bottom: 8px;
     }
     .quantity {
-        flex-direction: column;
         align-items: stretch;
         gap: 8px;
         padding: 8px;

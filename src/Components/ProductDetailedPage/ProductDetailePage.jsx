@@ -10,6 +10,38 @@ import ProductDetailes from "../ProductDetails/ProductDetails.jsx";
 import CommentsList from "../CommentsList/CommentsList.jsx";
 import ProductDeepDatails from "../ProductDeepDetails/ProductDeepDatails.jsx";
 
+const SkeletonBox = ({ style, className }) => (
+  <div className={"skeleton-box " + (className || "")} style={{ background: "#ececec", borderRadius: 8, ...style }} />
+);
+
+const ProductDetailSkeleton = () => (
+  <div className="productDetailPage">
+    <div className="slideShow-details">
+      <div className="slideShow">
+        <SkeletonBox style={{ width: "100%", height: 320, marginBottom: 24 }} />
+      </div>
+      <div className="productDetails">
+        <SkeletonBox style={{ width: "60%", height: 32, marginBottom: 16 }} />
+        <SkeletonBox style={{ width: "40%", height: 20, marginBottom: 16 }} />
+        <SkeletonBox style={{ width: "100%", height: 80, marginBottom: 12 }} />
+        <SkeletonBox style={{ width: "100%", height: 60, marginBottom: 12 }} />
+        <SkeletonBox style={{ width: "100%", height: 40, marginBottom: 12 }} />
+      </div>
+      <div className="productDeepDatails">
+        <SkeletonBox style={{ width: "100%", height: 80, marginBottom: 12 }} />
+        <SkeletonBox style={{ width: "100%", height: 40, marginBottom: 12 }} />
+      </div>
+    </div>
+    <div className="priceBox">
+      <SkeletonBox style={{ width: "100%", height: 220, marginBottom: 16 }} />
+    </div>
+    <div className="comments">
+      <SkeletonBox style={{ width: "100%", height: 60, marginBottom: 12 }} />
+      <SkeletonBox style={{ width: "100%", height: 80, marginBottom: 12 }} />
+      <SkeletonBox style={{ width: "100%", height: 80, marginBottom: 12 }} />
+    </div>
+  </div>
+);
 
 const ProductDetailPage = () => {
     const { addProductReview, selectedProduct, productLoading, productError, fetchProductById } = useContext(ProductContext);
@@ -33,7 +65,7 @@ const ProductDetailPage = () => {
     }, [selectedProduct]);
 
     if (productLoading) {
-        return <div>Loading product...</div>;
+        return <ProductDetailSkeleton />;
     }
 
     if (productError) {
