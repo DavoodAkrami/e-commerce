@@ -85,7 +85,7 @@
         font-size: 1rem;
     }
     .carousel {
-        width: 400px;
+        width: 350px;
         height: 250px;
     }
     .arrow-left {
@@ -96,3 +96,16 @@
     }
 }
 
+@media(max-width: 450px) {
+    .carousel {
+        width: 300px;
+        height: 230px;
+    }
+}
+
+@media(max-width: 400px) {
+    .carousel {
+        width: 250px;
+        height: 190px;
+    }
+}
