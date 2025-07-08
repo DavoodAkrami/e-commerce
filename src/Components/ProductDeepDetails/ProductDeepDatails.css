@@ -1,0 +1,14 @@
+.ProductDeepDatails {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.detail-row {
+    display: flex;
+    gap: 5px;
+    padding: 0.5rem 3rem;
+    border-radius: 10px;
+    color: var(--primary-color-text-light);
+    background-color: var(--primary-color-grey);
+}

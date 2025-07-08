@@ -3,10 +3,11 @@ import "./ProductDetails.css"
 import { CiStar } from "react-icons/ci";
 import { BiCategory } from "react-icons/bi";
 
-
-
 const ProductDetailes = ({product}) => {
-
+    const ratings = Array.isArray(product.reviews) ? product.reviews.map(r => r.rating) : [];
+    const averageRating = ratings.length
+      ? (ratings.reduce((sum, r) => sum + Number(r), 0) / ratings.length).toFixed(2)
+      : product.rating || 0;
     return (
         <div className="productDetails">
             <div className="title-rate">
@@ -14,7 +15,7 @@ const ProductDetailes = ({product}) => {
                     {product.title}
                 </h1>
                 <div className="rate">
-                    <span>{product.rating}</span>
+                    <span>{averageRating}</span>
                     <CiStar className="star"/> 
                 </div>
             </div>
@@ -28,7 +29,7 @@ const ProductDetailes = ({product}) => {
                 <span className="detialTitle">Brand:</span> {product.brand}
                 </div>
                 <div>
-                    <span className="detialTitle tagTitle">Tags:</span> {product.tags.map((tag, index) => <span key={index} className="tagsSpan">{tag}</span>)}
+                    <span className="detialTitle tagTitle">Tags:</span> {Array.isArray(product.tags) ? product.tags.map((tag, index) => <span key={index} className="tagsSpan">{tag}</span>) : null}
                 </div>
                 <div className="description">
                     <span className="detialTitle">Discription:</span> {product.description}

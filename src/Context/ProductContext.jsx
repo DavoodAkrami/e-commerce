@@ -103,9 +103,13 @@ export const ProductProvider = ({children}) => {
         try {
             const res = await fetch(`https://dummyjson.com/products/${id}`);
             const data = await res.json();
-            
             if (res.ok) {
-                dispatch({ type: "FETCH_PRODUCT_SUCCESS", payload: data });
+                // Merge local comments
+                const localKey = `product-comments-${id}`;
+                const localComments = JSON.parse(localStorage.getItem(localKey)) || [];
+                const mergedReviews = [...(data.reviews || []), ...localComments];
+                const mergedProduct = { ...data, reviews: mergedReviews };
+                dispatch({ type: "FETCH_PRODUCT_SUCCESS", payload: mergedProduct });
             } else {
                 dispatch({ type: "FETCH_PRODUCT_ERROR", payload: "failed" });
             }
@@ -117,6 +121,35 @@ export const ProductProvider = ({children}) => {
     const clearSelectedProduct = () => {
         dispatch({ type: "CLEAR_SELECTED_PRODUCT" });
     };
+
+    const addProductReview = async ({productId, newReview}) => {
+        try {
+            const product = state.selectedProduct;
+            const updatedReviews = [...(product.reviews || []), newReview];
+
+
+            const localKey = `product-comments-${productId}`;
+            const localComments = JSON.parse(localStorage.getItem(localKey)) || [];
+            localComments.push(newReview);
+            localStorage.setItem(localKey, JSON.stringify(localComments));
+
+
+            await fetch(`https://dummyjson.com/products/${productId}`, {
+                method: "PUT",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ reviews: updatedReviews }),
+            });
+
+
+            const updatedProduct = { ...product, reviews: updatedReviews };
+            dispatch({ type: "FETCH_PRODUCT_SUCCESS", payload: updatedProduct });
+            return updatedProduct; 
+        } catch (error) {
+            console.error("Error adding review:", error);
+            dispatch({ type: "FETCH_PRODUCT_ERROR", payload: error.message });
+            throw error;
+        }   
+    }
 
     return (
         <ProductContext.Provider value={{       
@@ -131,7 +164,8 @@ export const ProductProvider = ({children}) => {
             clearFilters,
             fetchProducts,
             fetchProductById,
-            clearSelectedProduct
+            clearSelectedProduct,
+            addProductReview
             }}
         >
             {children}

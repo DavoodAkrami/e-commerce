@@ -7,10 +7,12 @@ import { useParams } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthContext.jsx";
 import SlideShow from "../SlideShow/SlideShow.jsx";
 import ProductDetailes from "../ProductDetails/ProductDetails.jsx";
+import CommentsList from "../CommentsList/CommentsList.jsx";
+import ProductDeepDatails from "../ProductDeepDetails/ProductDeepDatails.jsx";
 
 
 const ProductDetailPage = () => {
-    const { selectedProduct, productLoading, productError, fetchProductById } = useContext(ProductContext);
+    const { addProductReview, selectedProduct, productLoading, productError, fetchProductById } = useContext(ProductContext);
     const { addItem, removeItem, getProductQuantity, updateQuantity, cartLoading } = useContext(CartContext);
     const { user } = useContext(AuthContext);
     const { id } = useParams();
@@ -44,11 +46,16 @@ const ProductDetailPage = () => {
 
     return (
         <div className="productDetailPage">
-            <div className="slideShow">
-                <SlideShow imgSrcs={productImgs}/> 
-            </div>
-            <div className="productDetails">
-                <ProductDetailes product={selectedProduct} />
+            <div className="slideShow-details">
+                <div className="slideShow">
+                    <SlideShow imgSrcs={productImgs}/> 
+                </div>
+                <div className="productDetails">
+                    <ProductDetailes product={selectedProduct} />
+                </div>
+                <div className="productDeepDatails">
+                    <ProductDeepDatails product={selectedProduct} />
+                </div>                
             </div>
             <div className="priceBox">
                 <PriceBox 
@@ -59,6 +66,9 @@ const ProductDetailPage = () => {
                     updateQuantity={updateQuantity}
                     getProductQuantity={getProductQuantity}
                 />
+            </div>
+            <div className="comments">
+                <CommentsList comments={selectedProduct.reviews} addReviewFunc={addProductReview} product={selectedProduct} />
             </div>
         </div>
     );
