@@ -286,3 +286,60 @@
 .add-to-cart-btn span {
     vertical-align: middle;
 }
+
+@media (max-width: 600px) {
+    .PriceBox {
+        max-width: 100%;
+        margin: 0 0;
+        padding: 12px;
+        border-radius: 10px;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    }
+    .priceNumber {
+        font-size: 1.5rem;
+        margin-bottom: 8px;
+    }
+    .quantity {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        padding: 8px;
+    }
+    .quantity-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 1.1rem;
+    }
+    .quantity-input {
+        width: 44px;
+        height: 32px;
+        font-size: 1rem;
+    }
+    .add-to-cart-btn {
+        padding: 12px 10px;
+        font-size: 1rem;
+        border-radius: 8px;
+    }
+    .product-info-sections {
+        gap: 8px;
+        margin-top: 12px;
+    }
+    .info-box {
+        padding: 10px;
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+    .info-icon {
+        font-size: 18px;
+        width: 32px;
+        height: 32px;
+    }
+    .info-content h4 {
+        font-size: 12px;
+    }
+    .info-content p {
+        font-size: 11px;
+    }
+}

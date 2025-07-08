@@ -75,22 +75,6 @@
   padding: 2rem 0;
 }
 
-@media (max-width: 700px) {
-  .comments-list {
-    padding: 1rem 0.5rem;
-    border-radius: 10px;
-  }
-  .comment-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.3rem;
-  }
-  .comment-body {
-    font-size: 0.98rem;
-    padding: 0.6rem 0.7rem;
-  }
-}
-
 .add-comment-form {
   background: var(--primary-color-grey-bg, #f8f9fa);
   border-radius: 12px;
@@ -111,7 +95,8 @@
 
 .add-comment-input,
 .add-comment-textarea {
-  width: 100%;
+  width: 90%;
+  margin: 0 auto;
   border: 1.5px solid var(--primary-color-grey-input, #e0e0e0);
   border-radius: 8px;
   padding: 0.7rem 1rem;
