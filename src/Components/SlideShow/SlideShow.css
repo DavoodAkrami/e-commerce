@@ -22,9 +22,59 @@
     height: 100%;
     object-fit: contain;
     user-select: none;
-    pointer-events: none;
+    cursor: pointer;
+    pointer-events: auto;
     background: var(--primary-color-white);
 }
+
+/* Lightbox / gallery styles */
+.lightboxOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 24px;
+}
+.lightboxContent {
+    position: relative;
+    max-width: 1100px;
+    width: 100%;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.lightboxImage {
+    max-width: 100%;
+    max-height: calc(100vh - 220px);
+    object-fit: contain;
+    border-radius: 6px;
+}
+.lbClose {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #fff;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+}
+.lbThumbs { display: flex; gap: 8px; margin-top: 12px; overflow-x: auto; padding: 6px; }
+.thumb { width: 80px; height: 60px; object-fit: cover; opacity: 0.7; cursor: pointer; border-radius: 4px; }
+.thumb.active { outline: 2px solid #fff; opacity: 1; }
+.lb-arrow { top: 50%; transform: translateY(-50%); position: absolute; z-index: 11; background: rgba(255,255,255,0.9); }
+.lb-left { left: -48px; }
+.lb-right { right: -48px; }
 
 .arrow {
     background: var(--primary-color-white);
@@ -108,4 +158,23 @@
         width: 250px;
         height: 190px;
     }
+}
+
+/* Mobile adjustments for lightbox/gallery */
+@media (max-width: 700px) {
+    .carousel { width: 100%; height: 220px; max-width: 100%; }
+    .slide { min-width: 100%; height: 100%; }
+    .lb-arrow.lb-left { left: 8px; }
+    .lb-arrow.lb-right { right: 8px; }
+    .lb-arrow { background: rgba(255,255,255,0.95); padding: 6px; }
+    .lightboxImage { max-height: calc(100vh - 160px); }
+    .thumb { width: 60px; height: 44px; }
+    .lbThumbs { gap: 6px; }
+    .lbClose { top: 8px; right: 8px; }
+}
+
+@media (max-width: 420px) {
+    .lightboxImage { max-height: calc(100vh - 140px); }
+    .thumb { width: 48px; height: 36px; }
+    .lb-arrow { display: none; }
 }

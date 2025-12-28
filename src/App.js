@@ -6,6 +6,7 @@ import Layout from './Layout/Layout/Layout.jsx';
 import AuthPage from "./Pages/AuthPage/AuthPage.jsx"
 import ClientProfilePage from './Pages/Profile/Client/ClientProfilePage.jsx';
 import ProductDetailPage from './Components/ProductDetailedPage/ProductDetailePage.jsx';
+import CartPage from './Pages/CartPage/CartPage.jsx';
 
 
 export const clientPages = [
@@ -20,6 +21,10 @@ export const clientPages = [
   {
     element: <ClientProfilePage />,
     path: links.client.profile
+  },
+  {
+    element: <CartPage />,
+    path: links.client.cart
   },
   {
     element: <ProductDetailPage />,

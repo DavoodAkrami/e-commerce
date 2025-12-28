@@ -39,7 +39,7 @@ const AuthPage = () => {
                         required    
                     />
                     <div className={styles.hint}>
-                        username is <strong>emily</strong>
+                        username is <strong>emilys</strong>
                     </div>
                     <input 
                         type="password"
