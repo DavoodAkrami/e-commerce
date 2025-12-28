@@ -44,6 +44,15 @@
     box-shadow: 0 2px 8px rgba(25, 118, 210, 0.10);
 }
 
+.hint {
+    width: 85%;
+    text-align: left;
+    color: #546070;
+    font-size: 0.95rem;
+    margin-top: -0.6em;
+    margin-bottom: 0.6em;
+}
+
 .submitButton {
     background: #1976d2;
     color: #fff;

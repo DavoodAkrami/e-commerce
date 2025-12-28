@@ -38,6 +38,9 @@ const AuthPage = () => {
                         onChange={e => setUsername(e.target.value)}
                         required    
                     />
+                    <div className={styles.hint}>
+                        username is <strong>emily</strong>
+                    </div>
                     <input 
                         type="password"
                         placeholder="Password"
@@ -45,6 +48,9 @@ const AuthPage = () => {
                         onChange={e => setPassword(e.target.value)}
                         required    
                     />
+                    <div className={styles.hint}>
+                        password is <strong>emilyspass</strong>
+                    </div>
                     <button
                         type="submit"
                         disabled={loading}
